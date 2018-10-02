@@ -38,16 +38,19 @@ function changeExpression() {
 
 
 function startPractice(event) {
+  statusDialog.dialog( "close" );
   currentStatus = createStatusInfo();
   changeExpression();
 }
 
 function rightAnswer(event) {
+  statusDialog.dialog( "close" );
   currentStatus.rightQuestions.push(currentStatus.currentExpression);
   changeExpression();
 }
 
 function wrongAnswer(event) {
+  statusDialog.dialog( "close" );
   currentStatus.wrongQuestions.push(currentStatus.currentExpression);
   changeExpression();
 }
@@ -90,17 +93,12 @@ function endPractice(event) {
   statusDialog.dialog( "open" );
 }
 
-function closeStatus(event) {
-  $("#divStatus").close();
-}
-
 var statusDialog = null;
 function initUI() {
   $("#btnStartPractice").click(startPractice);
   $("#btnRight").click(rightAnswer);
   $("#btnWrong").click(wrongAnswer);
   $("#btnEndPractice").click(endPractice);
-  startPractice();
 
   statusDialog = $("#divStatus").dialog({
     autoOpen: false,
@@ -114,4 +112,5 @@ function initUI() {
       }
     }
   });
+  startPractice();
 }
