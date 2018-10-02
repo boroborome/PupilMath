@@ -104,7 +104,7 @@ function initUI() {
 
   statusDialog = $("#divStatus").dialog({
     autoOpen: false,
-    show: { effect: "blind", duration: 800 },
+    show: { effect: "blind", duration: 100 },
     // height: 400,
     // width: 350,
     modal: false,
