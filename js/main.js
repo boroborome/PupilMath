@@ -25,19 +25,40 @@ function createStatusInfo() {
 }
 var currentStatus = createStatusInfo();
 
-function changeExpression() {
+function randomExpression() {
   var range = document.getElementById("range");
   var r = range.value;
   var a = Math.floor((Math.random()*r));
   var b = Math.floor((Math.random()*r));
   var opv = Math.floor((Math.random()*2));
   var operationExp = (opv >= 1) ? delExp : addExp;
-  currentStatus.currentExpression = operationExp(a, b);
+  return operationExp(a, b);
+}
+
+function isDistinctExpression(expression, status) {
+  return !$.inArray(expression, status.rightQuestions)
+    && !$.inArray(expression, status.wrongQuestions);
+}
+
+function distinctRandomExpression(status) {
+  var tryTime = 10;
+  var expression = null;
+  while (true) {
+    var expression = randomExpression();
+    if (tryTime < 0 || isDistinctExpression(expression, status)) {
+      break;
+    }
+    tryTime--;
+  }
+  return expression;
+}
+
+function changeExpression() {
+  currentStatus.currentExpression = distinctRandomExpression(currentStatus);
   $("#expression").html(currentStatus.currentExpression);
   var totalNum = currentStatus.rightQuestions.length + currentStatus.wrongQuestions.length + 1;
   $("#txtQuestionNum").html("第" + totalNum + "题");
 }
-
 
 function startPractice(event) {
   statusDialog.dialog( "close" );
@@ -90,7 +111,7 @@ function endPractice(event) {
   currentStatus.endTime = new Date();
 
   $("#txtTitleRight").html("作对" + currentStatus.rightQuestions.length + "题");
-  $("#txtTitleWrong").html("作对" + currentStatus.wrongQuestions.length + "题");
+  $("#txtTitleWrong").html("作错" + currentStatus.wrongQuestions.length + "题");
   $("#txtAllRightQuestions").html(arrayToString(currentStatus.rightQuestions));
   $("#txtAllWrongQuestions").html(arrayToString(currentStatus.wrongQuestions));
   $("#timeExpend").html("耗时： " + calculateExpendTime(currentStatus));
