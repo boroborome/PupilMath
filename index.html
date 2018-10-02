@@ -24,16 +24,21 @@
   <body>
     <table style="height:300px;width:100%">
       <tr>
-        <td><div id="expression" style="width:100%;height:100%;font-size:300px;text-align: center;"></div></td>
-        <td style="width:200px" valign="top">
-          范围：
+        <td><div id="txtQuestionNum"></div></td>
+        <td>范围：
           <select id="range">
             <option value ="6">6</option>
             <option value ="10">10</option>
             <option value="20">20</option>
             <option value="50">50</option>
             <option value="100">100</option>
-          </select><br>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td><div id="expression" style="width:100%;height:100%;font-size:300px;text-align: center;"></div></td>
+        <td style="width:200px" valign="top">
+          <br>
           <input id="btnStartPractice" type="button" value="开始练习"/><br>
 
           <hr>
@@ -49,9 +54,10 @@
     </table>
 
     <div id="divStatus" title="本次练习统计信息">
-      <table border="1">
+      <table  class="table">
         <tr>
-          <td>作对的题</td><td>做错的题</td>
+          <td><div id="txtTitleRight"></div></td>
+          <td><div id="txtTitleWrong"></div></td>
         </tr><tr>
           <td><div id="txtAllRightQuestions"></div></td>
           <td><div id="txtAllWrongQuestions"></div></td>

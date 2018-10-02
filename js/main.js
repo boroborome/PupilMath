@@ -34,6 +34,8 @@ function changeExpression() {
   var operationExp = (opv >= 1) ? delExp : addExp;
   currentStatus.currentExpression = operationExp(a, b);
   $("#expression").html(currentStatus.currentExpression);
+  var totalNum = currentStatus.rightQuestions.length + currentStatus.wrongQuestions.length + 1;
+  $("#txtQuestionNum").html("第" + totalNum + "题");
 }
 
 
@@ -86,6 +88,9 @@ function arrayToString(array) {
 
 function endPractice(event) {
   currentStatus.endTime = new Date();
+
+  $("#txtTitleRight").html("作对" + currentStatus.rightQuestions.length + "题");
+  $("#txtTitleWrong").html("作对" + currentStatus.wrongQuestions.length + "题");
   $("#txtAllRightQuestions").html(arrayToString(currentStatus.rightQuestions));
   $("#txtAllWrongQuestions").html(arrayToString(currentStatus.wrongQuestions));
   $("#timeExpend").html("耗时： " + calculateExpendTime(currentStatus));
@@ -105,12 +110,7 @@ function initUI() {
     show: { effect: "blind", duration: 100 },
     // height: 400,
     // width: 350,
-    modal: false,
-    buttons: {
-      "关闭": function() {
-        statusDialog.dialog( "close" );
-      }
-    }
+    modal: false
   });
   startPractice();
 }
