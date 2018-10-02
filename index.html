@@ -2,8 +2,16 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
     <title>小学数学计算测试</title>
-    <script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
+    <script src="js/jquery-2.2.3.min.js" type="text/javascript"></script>
+    <script src="js/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="js/vendor/jquery.ui.widget.js"></script>
+    <script src="js/jquery.iframe-transport.js"></script>
+    <script src="js/bootstrap.js" type="text/javascript"></script>
+    <script src="js/main.js" type="text/javascript"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/jquery-ui.css" rel="stylesheet"/>
+    <link href="data:text/css;charset=utf-8," rel="stylesheet" data-href="css/bootstrap-theme.min.css"
+          id="bs-theme-stylesheet"/>
     <script type="text/javascript">
         $(document).ready(function(){
             initUI();
@@ -23,19 +31,25 @@
             <option value="50">50</option>
             <option value="100">100</option>
           </select><br>
-          <input type="button" value="开始练习" onclick="startPractice()"/>
+          <input id="btnStartPractice" type="button" value="开始练习"/><br>
+
+          <hr>
+          <br>
+          <input id="btnRight" type="button" value="正确"/><br>
+          <input id="btnWrong" type="button" value="错误"/><br>
           <br>
           <hr>
           <br>
-          <input type="button" value="正确" onclick="changeExpressoin()"/>
-          <input type="button" value="错误" onclick="changeExpressoin()"/>
-          <br>
-          <hr>
-          <br>
-          <input type="button" value="结束练习" onclick="startPractice()"/>
+          <input id="btnEndPractice" type="button" value="结束练习"/>
         </td>
       </tr>
     </table>
+
+    <div id="divStatus" title="本次练习统计信息">
+      作对的：<div id="txtAllRightQuestions"></div>
+      作错的：<div id="txtAllWrongQuestions"></div>
+      <div id="timeExpend">耗时:</div>
+    </div>
 
   </body>
 </html>
